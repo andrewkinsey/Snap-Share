@@ -16,6 +16,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         title = "Snap Share"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(importPicture))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showConectionPrompt))
     }
     
     @objc func importPicture() {
@@ -23,6 +24,22 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true, completion: nil)
+    }
+    
+    @objc func showConectionPrompt() {
+        let alert = UIAlertController(title: "Connection Type", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Host a session", style: .default, handler: startHosting))
+        alert.addAction(UIAlertAction(title: "Join session", style: .default, handler: joinSession))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func startHosting(action: UIAlertAction) {
+        
+    }
+    
+    func joinSession(action: UIAlertAction) {
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
